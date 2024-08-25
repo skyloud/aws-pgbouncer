@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:22.04
+FROM docker.io/library/ubuntu:24.04
 
 # Install pgbouncer, bash, and jq
 RUN apt-get update && apt-get install -y pgbouncer bash jq
