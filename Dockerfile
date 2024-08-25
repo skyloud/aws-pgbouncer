@@ -1,10 +1,10 @@
 FROM docker.io/library/ubuntu:24.04
 
 # Install pgbouncer, bash, and jq
-RUN apt-get update && apt-get install -y pgbouncer bash jq
+RUN apt-get update && apt-get install -y pgbouncer bash jq pipx && apt-get clean
 
 # Install the AWS CLI
-RUN apt-get install -y python3-pip && pip3 install awscli
+RUN pipx install awscli
 
 # Copy the script to the container
 COPY aws-pgbouncer.sh /usr/local/bin/aws-pgbouncer.sh
