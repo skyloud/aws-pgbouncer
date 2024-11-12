@@ -1,9 +1,7 @@
 version: '3'
 services:
   pgbouncer:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/skyloud/aws-pgbouncer:0.9.1
     ports:
       - 5432:5432
     environment:

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # This script is designed to control a pgbouncer instance with AWS Secrets Manager credentials for a PostgreSQL database.
 

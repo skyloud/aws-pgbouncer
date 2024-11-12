@@ -1,10 +1,14 @@
 FROM docker.io/library/ubuntu:24.04
 
 # Install pgbouncer, bash, and jq
-RUN apt-get update && apt-get install -y pgbouncer bash jq pipx && apt-get clean
+RUN apt-get update && apt-get install -y pgbouncer bash jq pipx curl unzip && apt-get clean
 
-# Install the AWS CLI
-RUN pipx install awscli
+# Install the AWS CLI depending on ARCH
+RUN ARCH=$(uname -m | sed 's/x86_64/x86_64/;s/aarch64/aarch64/') \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-${ARCH}.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install \
+    && rm -rf aws awscliv2.zip
 
 # Copy the script to the container
 COPY aws-pgbouncer.sh /usr/local/bin/aws-pgbouncer.sh
